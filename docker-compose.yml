@@ -1,0 +1,24 @@
+services:
+  feuerwehr-infoscreen:
+    build: .
+    image: feuerwehr-infoscreen:local
+    container_name: feuerwehr-infoscreen
+    restart: unless-stopped
+    environment:
+      MAIN_URL: "https://example.invalid/infoscreen"
+      IMAGE_DIR: "/app/images"
+      PORT: "8080"
+      STATUS_TIMEOUT_SECONDS: "5"
+      SLIDESHOW_INTERVAL_SECONDS: "15"
+      IMAGE_REFRESH_SECONDS: "60"
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./images:/app/images:ro
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,noexec,nosuid,nodev
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

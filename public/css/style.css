@@ -1,0 +1,153 @@
+:root {
+  color-scheme: dark;
+  --bg: #05070a;
+  --panel: rgba(10, 16, 24, 0.92);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --text: #f4f7fb;
+  --muted: #aab7c8;
+  --accent: #e02424;
+  --accent-soft: rgba(224, 36, 36, 0.22);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.display {
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#main-frame {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  background: #000;
+}
+
+.fallback {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 4vw;
+  background:
+    radial-gradient(circle at top left, rgba(224, 36, 36, 0.20), transparent 36rem),
+    linear-gradient(135deg, #070a0f 0%, #111827 100%);
+}
+
+.fallback-card {
+  width: min(1100px, 92vw);
+  padding: clamp(2rem, 5vw, 5rem);
+  border: 1px solid var(--panel-border);
+  border-radius: 28px;
+  background: var(--panel);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+  text-align: center;
+}
+
+.fallback-card.neutral {
+  background: rgba(12, 18, 28, 0.94);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #ffd8d8;
+  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.2rem, 5vw, 5.8rem);
+  line-height: 1.04;
+}
+
+p {
+  margin: 0 auto 2.5rem;
+  max-width: 60rem;
+  color: var(--muted);
+  font-size: clamp(1.2rem, 2vw, 2rem);
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin: 0;
+}
+
+dl > div {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+dt {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+dd {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.4vw, 2.6rem);
+  font-weight: 800;
+}
+
+.slideshow {
+  position: fixed;
+  inset: 0;
+  background: #000;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  opacity: 0;
+  transform: scale(1.01);
+  transition: opacity 1.2s ease-in-out, transform 4s ease-out;
+  will-change: opacity, transform;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (max-width: 800px) {
+  dl {
+    grid-template-columns: 1fr;
+  }
+}

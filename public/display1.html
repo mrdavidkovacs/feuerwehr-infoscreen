@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Feuerwehr Infoscreen — Display 1</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="display display-main">
+  <iframe id="main-frame" title="Informationsserver" referrerpolicy="no-referrer"></iframe>
+
+  <main id="fallback" class="fallback hidden" aria-live="polite">
+    <section class="fallback-card">
+      <div class="badge">Feuerwehr Infoscreen</div>
+      <h1>Verbindung zum Informationsserver unterbrochen</h1>
+      <p>Der lokale Infoscreen läuft weiter und prüft automatisch erneut.</p>
+      <dl>
+        <div>
+          <dt>Letzte erfolgreiche Verbindung</dt>
+          <dd id="last-success">Noch keine erfolgreiche Verbindung</dd>
+        </div>
+        <div>
+          <dt>Aktuelle Uhrzeit</dt>
+          <dd id="current-time">--:--:--</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <script src="/js/display1.js" defer></script>
+</body>
+</html>
