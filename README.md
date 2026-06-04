@@ -89,6 +89,14 @@ Dann öffnen:
 docker build -t feuerwehr-infoscreen:local .
 ```
 
+Die GitHub-Actions-Pipeline baut das Image bei Pull Requests nur zur Prüfung. Bei Pushes auf `main`, Tags wie `v1.2.3` oder manuellem Start wird es zusätzlich nach GitHub Container Registry veröffentlicht:
+
+```text
+ghcr.io/mrdavidkovacs/feuerwehr-infoscreen:latest
+ghcr.io/mrdavidkovacs/feuerwehr-infoscreen:main
+ghcr.io/mrdavidkovacs/feuerwehr-infoscreen:sha-<commit>
+```
+
 Start:
 
 ```bash
