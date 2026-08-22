@@ -16,12 +16,12 @@ One Ubuntu Desktop mini PC, two displays, local Docker service, and Chromium in 
    ```bash
    systemctl status apt-daily-upgrade.timer
    ```
-4. Join the Feuerwehr Wi-Fi, reboot, and confirm internet/DNS work.
-5. Bring Tailscale up and verify remote access before transport:
+4. Bring Tailscale up over the available home network and verify remote access before transport:
    ```bash
    sudo tailscale up
    tailscale status
    ```
+5. Store the Feuerwehr Wi-Fi profile if its SSID and credentials are known; connectivity can only be verified on site.
 6. Clone this repository and start the screen locally after setting the real `MAIN_URL` in `docker-compose.yml`:
    ```bash
    git clone https://github.com/mrdavidkovacs/feuerwehr-infoscreen.git
