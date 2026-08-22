@@ -1,28 +1,29 @@
 # Deployment checklist: Feuerwehr-Infoscreen
 
-One Ubuntu Desktop mini PC, two displays, local Docker service, and Chromium in kiosk mode. Keep the old mini PC connected until both screens have been observed working at the Feuerwehr.
+Reuse the existing Windows mini PC: install Ubuntu Desktop on it at home, then return the prepared device to the Feuerwehr. This deliberately replaces Windows; it is not a rollback plan.
 
-## Before bringing the device
+## Prepare the existing mini PC at home
 
-1. Install current Ubuntu Desktop LTS from the official USB installer. A one-off machine does not need an autoinstall image.
-2. Create the local admin account and apply updates:
+1. At the Feuerwehr, photograph the cabling and display order before taking the existing mini PC home.
+2. Install current Ubuntu Desktop LTS from the official USB installer, replacing Windows. A one-off machine does not need an autoinstall image.
+3. Create the local admin account and apply updates:
    ```bash
    sudo apt update && sudo apt full-upgrade -y
    sudo apt install -y docker.io docker-compose-v2 chromium-browser cifs-utils tailscale unattended-upgrades
    sudo usermod -aG docker "$USER"
    ```
    Log out and back in once so the Docker group takes effect.
-3. Enable automatic security updates through Ubuntu's `Software & Updates` → `Updates` → `Automatically check for updates` and `Install security updates without confirmation`. Verify later with:
+4. Enable automatic security updates through Ubuntu's `Software & Updates` → `Updates` → `Automatically check for updates` and `Install security updates without confirmation`. Verify later with:
    ```bash
    systemctl status apt-daily-upgrade.timer
    ```
-4. Bring Tailscale up over the available home network and verify remote access before transport:
+5. Bring Tailscale up over the available home network and verify remote access before transport:
    ```bash
    sudo tailscale up
    tailscale status
    ```
-5. Store the Feuerwehr Wi-Fi profile if its SSID and credentials are known; connectivity can only be verified on site.
-6. Clone this repository and start the screen locally after setting the real `MAIN_URL` in `docker-compose.yml`:
+6. Store the Feuerwehr Wi-Fi profile if its SSID and credentials are known; connectivity can only be verified on site.
+7. Clone this repository and start the screen locally after setting the real `MAIN_URL` in `docker-compose.yml`:
    ```bash
    git clone https://github.com/mrdavidkovacs/feuerwehr-infoscreen.git
    cd feuerwehr-infoscreen
@@ -108,16 +109,16 @@ EOF
 
 Adjust the second window position and both sizes if the displays are not two 1920×1080 panels arranged left-to-right.
 
-## On-site replacement and acceptance
+## On-site reconnection and acceptance
 
-1. Photograph the old mini PC's cabling and leave it powered nearby as rollback.
-2. Connect both displays, Ethernet/Wi-Fi, and power; boot the new device.
-3. Confirm each display opens the intended local endpoint.
-4. Confirm display 1's `MAIN_URL` renders and its fallback is understandable if the remote source is down.
-5. Confirm display 2 contains current SMB photos and advances after one interval.
-6. From another network, confirm the device is reachable through Tailscale.
-7. Reboot once. Both Docker service and Chromium kiosk must recover without local intervention.
-8. Only then disconnect the old mini PC.
+1. Reconnect the prepared former Windows mini PC using the cabling photo taken before removal.
+2. Connect both displays, Ethernet/Wi-Fi, and power; boot the device.
+3. Confirm the Feuerwehr Wi-Fi receives an address and has working DNS/internet.
+4. Confirm each display opens the intended local endpoint.
+5. Confirm display 1's `MAIN_URL` renders and its fallback is understandable if the remote source is down.
+6. Confirm display 2 contains current SMB photos and advances after one interval.
+7. From another network, confirm the device is reachable through Tailscale.
+8. Reboot once. Both Docker service and Chromium kiosk must recover without local intervention.
 
 ## Values to decide before deployment
 
