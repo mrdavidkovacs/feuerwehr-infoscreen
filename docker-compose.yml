@@ -1,5 +1,6 @@
 services:
   feuerwehr-infoscreen:
+    build: .
     image: ghcr.io/mrdavidkovacs/feuerwehr-infoscreen:main
     container_name: feuerwehr-infoscreen
     restart: unless-stopped
