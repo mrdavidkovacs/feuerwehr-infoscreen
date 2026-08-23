@@ -1,11 +1,10 @@
 services:
   feuerwehr-infoscreen:
-    build: .
-    image: feuerwehr-infoscreen:local
+    image: ghcr.io/mrdavidkovacs/feuerwehr-infoscreen:main
     container_name: feuerwehr-infoscreen
     restart: unless-stopped
     environment:
-      MAIN_URL: "https://example.invalid/infoscreen"
+      MAIN_URL: "https://lea-screen.notrufnoe.at"
       IMAGE_DIR: "/app/images"
       PORT: "8080"
       STATUS_TIMEOUT_SECONDS: "5"
@@ -14,7 +13,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./images:/app/images:ro
+      - /mnt/feuerwehr-images:/app/images:ro
     read_only: true
     tmpfs:
       - /tmp:size=16m,noexec,nosuid,nodev
