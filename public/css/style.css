@@ -1,12 +1,13 @@
 :root {
   color-scheme: dark;
-  --bg: #05070a;
-  --panel: rgba(10, 16, 24, 0.92);
-  --panel-border: rgba(255, 255, 255, 0.12);
-  --text: #f4f7fb;
-  --muted: #aab7c8;
-  --accent: #e02424;
-  --accent-soft: rgba(224, 36, 36, 0.22);
+  /* Palette aligned with the Feuerwehr incident-screen design. */
+  --bg: #000000;
+  --panel: #30100c;
+  --panel-border: #c94130;
+  --text: #ffffff;
+  --muted: #eae7e6;
+  --accent: #dd4835;
+  --accent-soft: #dd4835;
 }
 
 * {
@@ -47,9 +48,7 @@ body {
   display: grid;
   place-items: center;
   padding: 4vw;
-  background:
-    radial-gradient(circle at top left, rgba(224, 36, 36, 0.20), transparent 36rem),
-    linear-gradient(135deg, #070a0f 0%, #111827 100%);
+  background: var(--bg);
 }
 
 .fallback-card {
@@ -63,7 +62,7 @@ body {
 }
 
 .fallback-card.neutral {
-  background: rgba(12, 18, 28, 0.94);
+  background: var(--panel);
 }
 
 .badge {
@@ -72,10 +71,10 @@ body {
   justify-content: center;
   margin-bottom: 2rem;
   padding: 0.6rem 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
+  border: 0;
+  border-radius: 8px;
   background: var(--accent-soft);
-  color: #ffd8d8;
+  color: var(--text);
   font-size: clamp(0.9rem, 1.4vw, 1.2rem);
   font-weight: 700;
   letter-spacing: 0.08em;
